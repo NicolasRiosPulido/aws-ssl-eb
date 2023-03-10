@@ -4,21 +4,16 @@ var cors = require('cors');
 
 var app = express();
 
-app.use(cors())
+app.use(express.json());
 
-app.get('/', function (req, res) {
-    res.send({
-        Output: "Hello World!",
-        desdeNode: 'aca desde node Nicolas',
-    });
-});
+const health = require('./src/routs/health');
+const users = require('./src/routs/users');
 
-app.post('/', function (req, res) {
-    res.send({
-        "Output": "Hello World!"
-    });
-});
+app.use(cors());
 
-app.listen(port);
+health(app);
+users(app);
+
+app.listen(port, () => { console.log(`Listen http://localhost:${port}`) });
 module.exports = app;
 
