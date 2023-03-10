@@ -2,22 +2,39 @@ const mysql = require('mysql');
 
 class db {
     constructor() {
-        this.connect();
+        this.connection,
+            this.connect();
     }
 
     connect() {
-        const connection = mysql.createConnection({
-            host: 'https://database-1.cnwt5f9pbnof.us-east-1.rds.amazonaws.com/',
+        this.connection = mysql.createConnection({
+            host: 'database-1.cnwt5f9pbnof.us-east-1.rds.amazonaws.com',
             user: 'admin',
-            password: 'Nicol@s86',
-            //database: 'sys',
-            //insecureAuth: true
+            password: 'Nicolas86',
+            database: 'sys',
         });
-        connection.connect(error => {
+        this.connection.connect(error => {
             if (error) throw error;
             console.log("Successfully connected to the database.");
         });
     };
+
+    runQuery(query) {
+        return new Promise(async (resolve, reject) => {
+            this.connection.query(query, (err, res) => {
+                if (err) {
+                    reject(err)
+                } else {
+                    resolve(res);
+                }
+            })
+        })
+    }
+
+    end() {
+        console.log('termino coneccion')
+        this.connection.end();
+    }
 };
 
 module.exports = db;
