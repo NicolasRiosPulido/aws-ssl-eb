@@ -29,12 +29,12 @@ class db {
                 }
             })
         })
-    }
+    };
 
     end() {
         console.log('termino coneccion')
         this.connection.end();
-    }
+    };
 };
 
 module.exports = db;
