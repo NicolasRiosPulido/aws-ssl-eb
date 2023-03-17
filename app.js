@@ -10,7 +10,7 @@ const health = require('./src/routs/health');
 const users = require('./src/routs/users');
 
 const corsOptions = {
-    origin: '',
+    origin: 'https://www.app-aws-nicolas-rios.link',
     optionSuccessStatus: 200
 };
 
