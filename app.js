@@ -9,7 +9,12 @@ app.use(express.json());
 const health = require('./src/routs/health');
 const users = require('./src/routs/users');
 
-app.use(cors());
+const corsOptions = {
+    origin: '',
+    optionSuccessStatus: 200
+};
+
+app.use(cors(corsOptions));
 
 health(app);
 users(app);
